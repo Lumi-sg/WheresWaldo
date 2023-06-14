@@ -3,6 +3,7 @@ import MarthImage from "../assets/Marth.png";
 import PeachImage from "../assets/Peach.png";
 
 interface Character {
+	className: string;
 	src: string;
 	alt: string;
 	hasBeenFound: boolean;
@@ -10,16 +11,19 @@ interface Character {
 
 export const characters: Character[] = [
 	{
+		className: "Image",
 		src: FalcoImage,
 		alt: "Falco",
 		hasBeenFound: false,
 	},
 	{
+		className: "Image",
 		src: MarthImage,
 		alt: "Marth",
 		hasBeenFound: false,
 	},
 	{
+		className: "Image",
 		src: PeachImage,
 		alt: "Peach",
 		hasBeenFound: false,

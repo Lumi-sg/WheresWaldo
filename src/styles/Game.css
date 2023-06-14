@@ -5,7 +5,11 @@
 	justify-content: center;
 }
 
-.MeleeCastImage img {
-    width: 100%;
-    height: 100%;
+.CastImage {
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+}
+
+.CastImage:hover {
+	cursor: crosshair;
 }

@@ -8,7 +8,7 @@ const Header = () => {
 				{characters.map((character, index) => (
 					<img
 						key={index}
-						className="Image"
+						className={character.className}
 						src={character.src}
 						alt={character.alt}
 					/>
