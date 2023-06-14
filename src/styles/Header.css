@@ -1,0 +1,13 @@
+.Header {
+	display: flex;
+	justify-content: center;
+}
+.Characters {
+	display: flex;
+	gap: 5rem;
+	height: 100%;
+}
+
+.CharacterImage {
+	object-fit: contain;
+}
