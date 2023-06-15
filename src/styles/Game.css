@@ -1,13 +1,12 @@
 .MeleeCastImage {
-	width: 100%;
-	height: 100%;
+	width: 1334.62px;
+	height: 750px;
 	display: flex;
 	justify-content: center;
 }
 
 .CastImage {
-	border-left: 1px solid white;
-	border-right: 1px solid white;
+	border: 1px solid white;
 }
 
 .CastImage:hover {
@@ -58,28 +57,6 @@
 	font-weight: normal;
 }
 
-.HiddenDiv {
-	background-color: white;
-	/* border: 10px solid rgb(255, 255, 255); */
-	width: 4.5vw;
-	height: 9.25vh;
-	position: absolute;
+map:hover {
 	cursor: crosshair;
-}
-.HiddenDiv.Falco {
-	position: absolute;
-	top: 35.5vh;
-	left: 28.5vw;
-	background-color: rgba(255, 0, 0, 0);
-}
-
-.HiddenDiv.Marth {
-	background-color: rgba(0, 0, 255, 0);
-	top: 45.5%;
-	left: 57.25%;
-}
-
-.HiddenDiv.Peach {
-	background-color: rgba(255, 192, 203, 0);
-	top: 25.5%;
 }

@@ -18,7 +18,7 @@ const Game = ({ characterArray, setCharacterArray }: GameProps) => {
 	const [showBox, setShowBox] = useState(false);
 	const [clickedDiv, setClickedDiv] = useState<string | null>("");
 
-	const handleBoxClick = (e: React.MouseEvent<HTMLDivElement>) => {
+	const handleBoxClick = (e: any) => {
 		const boxElement = document.querySelector(".CharacterBox") as HTMLElement;
 		if (boxElement && boxElement.contains(e.target as Node)) {
 			// click came from inside the house > do nothing
@@ -31,9 +31,9 @@ const Game = ({ characterArray, setCharacterArray }: GameProps) => {
 		setBoxPosition(clickedPosition);
 
 		setShowBox(true);
-		let clickedBox = e.target as HTMLElement;
-		let clickedBoxData = clickedBox.getAttribute("datatype");
-		setClickedDiv(clickedBoxData);
+		console.log(e.target.alt);
+		let clickedBox = e.target.alt;
+		setClickedDiv(clickedBox);
 	};
 
 	const handleCharacterSelection = (selectedCharacter: Character) => {
@@ -101,8 +101,29 @@ const Game = ({ characterArray, setCharacterArray }: GameProps) => {
 					className="CastImage"
 					src={MeleeCastImage}
 					alt="MeleeCast"
-					onClick={handleBoxClick}
+					useMap="#image-map"
+					onClick={(e) => handleBoxClick(e)}
 				/>
+				<map name="image-map">
+					<area
+						shape="rect"
+						coords="255, 208, 348, 300"
+						alt="Falco"
+						onClick={(e) => handleBoxClick(e)}
+					></area>
+					<area
+						shape="rect"
+						coords="622, 111, 714, 203"
+						alt="Peach"
+						onClick={(e) => handleBoxClick(e)}
+					></area>
+					<area
+						shape="rect"
+						coords="806, 299, 897, 391"
+						alt="Marth"
+						onClick={(e) => handleBoxClick(e)}
+					></area>
+				</map>
 			</div>
 			{showBox && (
 				<div
@@ -130,21 +151,6 @@ const Game = ({ characterArray, setCharacterArray }: GameProps) => {
 					))}
 				</div>
 			)}
-			<div
-				className="HiddenDiv Falco"
-				onClick={handleBoxClick}
-				datatype="Falco"
-			></div>
-			<div
-				className="HiddenDiv Marth"
-				onClick={handleBoxClick}
-				datatype="Marth"
-			></div>
-			<div
-				className="HiddenDiv Peach"
-				onClick={handleBoxClick}
-				datatype="Peach"
-			></div>
 		</div>
 	);
 };
