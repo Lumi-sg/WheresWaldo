@@ -15,6 +15,8 @@ function App() {
 
 		return () => clearInterval(timer);
 	}, []);
+
+	
 	return (
 		<div className="App">
 			<Header time={time} setTime={setTime}/>

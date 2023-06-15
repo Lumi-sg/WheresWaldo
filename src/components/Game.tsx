@@ -11,11 +11,12 @@ interface BoxPosition {
 const Game: React.FC = () => {
 	const [boxPosition, setBoxPosition] = useState<BoxPosition>({ x: 0, y: 0 });
 	const [showBox, setShowBox] = useState(false);
+	const [clickedDiv, setClickedDiv] = useState<string | null>("");
 
 	const handleBoxClick = (e: React.MouseEvent<HTMLDivElement>) => {
 		const boxElement = document.querySelector(".CharacterBox") as HTMLElement;
 		if (boxElement && boxElement.contains(e.target as Node)) {
-			// Click originated from within the box, do nothing
+			// Click originated from within > do nothing
 			return;
 		}
 		const clickedPosition: BoxPosition = {
@@ -23,7 +24,27 @@ const Game: React.FC = () => {
 			y: e.clientY,
 		};
 		setBoxPosition(clickedPosition);
+
 		setShowBox(true);
+		let clickedBox = e.target as HTMLElement;
+		let clickedBoxData = clickedBox.getAttribute("datatype");
+		setClickedDiv(clickedBoxData);
+	};
+
+	const handleCharacterSelection = (e: React.MouseEvent<HTMLButtonElement>, character: any) => {
+		console.log(clickedDiv);
+		if (clickedDiv) {
+			if (clickedDiv === character.alt) {
+				console.log("Matched!");
+				character.hasBeenFound = true;
+				character.className = "ImageFound";
+				setShowBox(false);
+				console.table(character);
+			}
+		} else {
+			console.log("No match was made!");
+			setShowBox(false);
+		}
 	};
 
 	const calculateBoxPosition = (): React.CSSProperties => {
@@ -91,6 +112,7 @@ const Game: React.FC = () => {
 							<button
 								key={index}
 								disabled={character.hasBeenFound}
+								onClick={(e) => handleCharacterSelection(e, character)}
 							>
 								{character.alt}
 							</button>
@@ -98,6 +120,21 @@ const Game: React.FC = () => {
 					))}
 				</div>
 			)}
+			<div
+				className="HiddenDiv Falco"
+				onClick={handleBoxClick}
+				datatype="Falco"
+			></div>
+			<div
+				className="HiddenDiv Marth"
+				onClick={handleBoxClick}
+				datatype="Marth"
+			></div>
+			<div
+				className="HiddenDiv Peach"
+				onClick={handleBoxClick}
+				datatype="Peach"
+			></div>
 		</div>
 	);
 };

@@ -2,7 +2,7 @@ import FalcoImage from "../assets/Falco.png";
 import MarthImage from "../assets/Marth.png";
 import PeachImage from "../assets/Peach.png";
 
-interface Character {
+export interface Character {
 	className: string;
 	src: string;
 	alt: string;
@@ -23,9 +23,9 @@ export const characters: Character[] = [
 		hasBeenFound: false,
 	},
 	{
-		className: "ImageFound",
+		className: "Image",
 		src: PeachImage,
 		alt: "Peach",
-		hasBeenFound: true,
+		hasBeenFound: false,
 	},
 ];
