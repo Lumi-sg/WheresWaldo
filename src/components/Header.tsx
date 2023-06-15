@@ -1,7 +1,13 @@
 import "../styles/Header.css";
 import { characters } from "./Characters";
+import Timer from "./Timer";
 
-const Header = () => {
+export type TimeProps = {
+	time: number;
+	setTime: React.Dispatch<React.SetStateAction<number>>;
+};
+
+const Header = ({ time, setTime }: TimeProps) => {
 	return (
 		<div className="Header">
 			<div className="Characters">
@@ -14,6 +20,10 @@ const Header = () => {
 					/>
 				))}
 			</div>
+			<Timer
+				time={time}
+				setTime={setTime}
+			/>
 		</div>
 	);
 };
