@@ -13,3 +13,44 @@
 .CastImage:hover {
 	cursor: crosshair;
 }
+
+.CharacterBox {
+	position: absolute;
+	background: rgb(0, 0, 0);
+	transform: translate(-50%, -50%);
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	border: 1px solid white;
+	box-shadow: 0 0.5rem 5rem rgb(0, 0, 0);
+}
+
+.ItemContainer > button {
+	border: none;
+	background-color: black;
+	color: aliceblue;
+	height: 3rem;
+	width: 3rem;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.202);
+}
+
+.ItemContainer > button:hover {
+	cursor: pointer;
+	font-weight: bold;
+	background-color: rgb(40, 40, 40);
+}
+
+.ItemContainer {
+	display: flex;
+}
+
+.ItemContainer > img {
+	width: 3rem;
+	height: 3rem;
+}
+
+.ItemContainer button:disabled:hover {
+	cursor: not-allowed;
+	background-color: black;
+	font-weight: normal;
+}

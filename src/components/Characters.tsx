@@ -23,9 +23,9 @@ export const characters: Character[] = [
 		hasBeenFound: false,
 	},
 	{
-		className: "Image",
+		className: "ImageFound",
 		src: PeachImage,
 		alt: "Peach",
-		hasBeenFound: false,
+		hasBeenFound: true,
 	},
 ];

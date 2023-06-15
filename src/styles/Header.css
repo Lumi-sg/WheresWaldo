@@ -14,7 +14,6 @@
 	object-fit: contain;
 }
 .ImageFound {
-	opacity: 0.6; /* Reduce opacity to visually gray out the image */
-	filter: grayscale(100%); /* Apply grayscale effect to further gray out the image */
-	cursor: not-allowed; /* Change cursor to indicate it is disabled */
+	opacity: 0.6;
+	filter: grayscale(100%);
 }
