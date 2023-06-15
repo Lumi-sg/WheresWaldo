@@ -60,7 +60,7 @@
 
 .HiddenDiv {
 	background-color: white;
-	border: 10px solid rgb(255, 255, 255);
+	/* border: 10px solid rgb(255, 255, 255); */
 	width: 4.5vw;
 	height: 9.25vh;
 	position: absolute;

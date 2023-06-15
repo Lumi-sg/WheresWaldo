@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MeleeCastImage from "../assets/MeleeCast.png";
-import { characters } from "./Characters";
+import { Character } from "./Characters";
 import "../styles/Game.css";
 
 interface BoxPosition {
@@ -8,7 +8,12 @@ interface BoxPosition {
 	y: number;
 }
 
-const Game: React.FC = () => {
+type GameProps = {
+	characterArray: Character[];
+	setCharacterArray: React.Dispatch<React.SetStateAction<Character[]>>;
+};
+
+const Game = ({ characterArray, setCharacterArray }: GameProps) => {
 	const [boxPosition, setBoxPosition] = useState<BoxPosition>({ x: 0, y: 0 });
 	const [showBox, setShowBox] = useState(false);
 	const [clickedDiv, setClickedDiv] = useState<string | null>("");
@@ -16,7 +21,7 @@ const Game: React.FC = () => {
 	const handleBoxClick = (e: React.MouseEvent<HTMLDivElement>) => {
 		const boxElement = document.querySelector(".CharacterBox") as HTMLElement;
 		if (boxElement && boxElement.contains(e.target as Node)) {
-			// Click originated from within > do nothing
+			// click came from inside the house > do nothing
 			return;
 		}
 		const clickedPosition: BoxPosition = {
@@ -31,20 +36,25 @@ const Game: React.FC = () => {
 		setClickedDiv(clickedBoxData);
 	};
 
-	const handleCharacterSelection = (e: React.MouseEvent<HTMLButtonElement>, character: any) => {
+	const handleCharacterSelection = (selectedCharacter: Character) => {
 		console.log(clickedDiv);
 		if (clickedDiv) {
-			if (clickedDiv === character.alt) {
+			if (clickedDiv === selectedCharacter.alt) {
 				console.log("Matched!");
-				character.hasBeenFound = true;
-				character.className = "ImageFound";
+				const updatedCharacterArray = characterArray.map((character) => {
+					if (clickedDiv === character.alt) {
+						return { ...character, hasBeenFound: true, className: "ImageFound" };
+					}
+					return character;
+				});
+				setCharacterArray(updatedCharacterArray);
 				setShowBox(false);
-				console.table(character);
+			} else {
+				console.log("No match was made!");
+				setShowBox(false);
 			}
-		} else {
-			console.log("No match was made!");
-			setShowBox(false);
 		}
+		setShowBox(false);
 	};
 
 	const calculateBoxPosition = (): React.CSSProperties => {
@@ -99,7 +109,7 @@ const Game: React.FC = () => {
 					className="CharacterBox"
 					style={calculateBoxPosition()}
 				>
-					{characters.map((character, index) => (
+					{characterArray.map((character, index) => (
 						<div
 							className="ItemContainer"
 							key={index}
@@ -112,7 +122,7 @@ const Game: React.FC = () => {
 							<button
 								key={index}
 								disabled={character.hasBeenFound}
-								onClick={(e) => handleCharacterSelection(e, character)}
+								onClick={() => handleCharacterSelection(character)}
 							>
 								{character.alt}
 							</button>
