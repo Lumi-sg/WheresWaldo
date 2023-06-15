@@ -7,7 +7,6 @@ import Footer from "./components/Footer";
 import GameOver from "./components/GameOver";
 import { Character } from "./components/Characters";
 import { characters } from "./components/Characters";
-import { formatTime } from "./components/FormatTime";
 
 function App() {
 	const [time, setTime] = useState<number>(0);
@@ -30,18 +29,9 @@ function App() {
 	useEffect(() => {
 		if (characterArray.every((character) => character.hasBeenFound)) {
 			setAllCharactersFound(true);
-			//save time to local storage
-			localStorage.setItem("time", JSON.stringify(formatTime(time)));
 			setIsGameOver(true);
 		}
 	}, [characterArray]);
-
-	const restartGame = () => {
-		// setCharacterArray(characters);
-		// setTime(0);
-		// setAllCharactersFound(false);
-		// setIsGameOver(false);
-	};
 
 	return (
 		<div className="App">
@@ -60,7 +50,10 @@ function App() {
 				<GameOver
 					time={time}
 					setTime={setTime}
+					isGameOver={isGameOver}
 					setIsGameOver={setIsGameOver}
+					setAllCharactersFound={setAllCharactersFound}
+					setCharacterArray={setCharacterArray}
 				/>
 			)}
 			<Footer />
