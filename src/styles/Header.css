@@ -1,6 +1,6 @@
 .Header {
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 	align-items: center;
 }
 .Characters {
@@ -16,4 +16,33 @@
 .ImageFound {
 	opacity: 0.6;
 	filter: grayscale(100%);
+}
+.LOGINContainer {
+	margin-right: 10rem;
+	display: flex;
+	align-items: center;
+}
+
+.LOGINButton {
+	background-color: #333;
+	color: white;
+	border: none;
+	padding: 0.5rem;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 10rem;
+	margin-left: 1rem;
+}
+
+.LOGINButton:hover {
+	background-color: #555;
+}
+
+.UserGreeting{
+	font-size: 1.5rem;
+	width: 8rem;
+}
+.Timer {
+	font-size: 3rem;
+	margin-left: 10rem;
 }

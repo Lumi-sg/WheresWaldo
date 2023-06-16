@@ -1,4 +1,3 @@
-import "../styles/Timer.css";
 import { TimerProps } from "./Header";
 import { formatTime } from "./FormatTime";
 

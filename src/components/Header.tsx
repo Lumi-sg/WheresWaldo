@@ -1,7 +1,8 @@
 import "../styles/Header.css";
 import Timer from "./Timer";
 import { Character } from "./Characters";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import LOGIN from "./LOGIN";
 
 type HeaderProps = {
 	time: number;
@@ -16,9 +17,18 @@ export type TimerProps = {
 };
 
 const Header = ({ time, setTime, characterArray }: HeaderProps) => {
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+
 	useEffect(() => {}, [characterArray]);
+
 	return (
 		<div className="Header">
+			<div className="TimerContainer">
+				<Timer
+					time={time}
+					setTime={setTime}
+				/>
+			</div>
 			<div className="Characters">
 				{characterArray.map((character, index) => (
 					<img
@@ -29,9 +39,10 @@ const Header = ({ time, setTime, characterArray }: HeaderProps) => {
 					/>
 				))}
 			</div>
-			<Timer
-				time={time}
-				setTime={setTime}
+
+			<LOGIN
+				isLoggedIn={isLoggedIn}
+				setIsLoggedIn={setIsLoggedIn}
 			/>
 		</div>
 	);
