@@ -6,6 +6,7 @@ import { Character } from "./Characters";
 import { firestoreDB } from "../main";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { User as FirebaseUser } from "firebase/auth";
+import foxShineGif from "../assets/foxshine.gif";
 
 type GameOverProps = {
 	time: number;
@@ -28,12 +29,14 @@ const GameOver = ({
 }: GameOverProps) => {
 	const gameOverHasBeenSet = useRef(false);
 	const [newData, setNewData] = useState<any[]>([]);
+	const [hasDataBeenFetched, setHasDataBeenFetched] = useState(false);
 
 	const handlePlayAgain = () => {
 		setCharacterArray(characters);
 		setTime(0);
 		setAllCharactersFound(false);
 		setIsGameOver(false);
+		setHasDataBeenFetched(false);
 		gameOverHasBeenSet.current = false;
 	};
 
@@ -63,6 +66,7 @@ const GameOver = ({
 			});
 			newData.sort((a, b) => a.timeScored.localeCompare(b.timeScored)); // Sort newData by timeScored in ascending order
 			setNewData(newData);
+			setHasDataBeenFetched(true);
 		});
 	};
 
@@ -88,38 +92,49 @@ const GameOver = ({
 
 	return (
 		<div className="GameOverModal">
-			<div className="ModalContent">
-				<h1>You Won!</h1>
-				<span className="TimeDisplay">Your Time: {formatTime(time)}</span>
-				<div className="Leaderboard">
-					<span className="BestTime">Best Times</span>
-					<ul className="TimeList">
-						{newData
-							.sort() // sort the times in ascending order
-							.slice(0, 5) // display only the top 5 scores
-							.map((item, index) => (
-								<p
-									className="Time"
-									key={index}
-								>
-									<span className="Number">{index + 1}.</span>
-									<span className="NameAndTime">
-										<span className="FirstName">{item.firstName}:</span>
-										{item.timeScored}
-									</span>
-								</p>
-							))}
-					</ul>
+			{hasDataBeenFetched ? (
+				<div className="ModalContent">
+					<h1>You Won!</h1>
+					<span className="TimeDisplay">Your Time: {formatTime(time)}</span>
+					<div className="Leaderboard">
+						<span className="BestTime">Best Times</span>
+						<ul className="TimeList">
+							{newData
+								.sort() // sort the times in ascending order
+								.slice(0, 5) // display only the top 5 scores
+								.map((item, index) => (
+									<p
+										className="Time"
+										key={index}
+									>
+										<span className="Number">{index + 1}.</span>
+										<span className="NameAndTime">
+											<span className="FirstName">{item.firstName}:</span>
+											{item.timeScored}
+										</span>
+									</p>
+								))}
+						</ul>
+					</div>
+					<div className="buttonDiv">
+						<button
+							className="PlayAgainButton"
+							onClick={handlePlayAgain}
+						>
+							Play Again?
+						</button>
+					</div>
 				</div>
-				<div className="buttonDiv">
-					<button
-						className="PlayAgainButton"
-						onClick={handlePlayAgain}
-					>
-						Play Again?
-					</button>
+			) : (
+				<div className="loadingDiv">
+					<img
+						className="FoxShine"
+						src={foxShineGif}
+						alt="Fox Shine"
+					/>
+					<div className="Loading">Loading...</div>
 				</div>
-			</div>
+			)}
 		</div>
 	);
 

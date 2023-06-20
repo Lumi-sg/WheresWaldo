@@ -73,3 +73,18 @@
 .FirstName {
 	margin-right: 0.5rem;
 }
+.loadingDiv {
+	background-color: #000000;
+	padding: 1.5rem;
+	border-radius: 10px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+	font-size: 1.5rem;
+	border: 2px solid white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.FoxShine {
+	margin-bottom: 1rem;
+}

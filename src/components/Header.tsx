@@ -30,7 +30,7 @@ const Header = ({
 	isLoggedIn,
 	setIsLoggedIn,
 }: HeaderProps) => {
-	useEffect(() => {}, [characterArray]);
+	// useEffect(() => {}, [characterArray]);
 
 	return (
 		<div className="Header">
