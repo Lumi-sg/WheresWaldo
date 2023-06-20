@@ -6,6 +6,6 @@ export default defineConfig({
 	plugins: [react()],
 	base: "/WheresWaldo",
 	server: {
-		port: 8000,
+		port: 9000,
 	},
 });

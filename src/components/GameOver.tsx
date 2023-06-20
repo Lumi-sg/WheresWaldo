@@ -11,6 +11,7 @@ type GameOverProps = {
 	setIsGameOver: React.Dispatch<React.SetStateAction<boolean>>;
 	setAllCharactersFound: React.Dispatch<React.SetStateAction<boolean>>;
 	setCharacterArray: React.Dispatch<React.SetStateAction<Character[]>>;
+	firstName: string | null;
 };
 
 const GameOver = ({
@@ -20,6 +21,7 @@ const GameOver = ({
 	setIsGameOver,
 	setAllCharactersFound,
 	setCharacterArray,
+	firstName,
 }: GameOverProps) => {
 	const [bestTimes, setBestTimes] = useState<string[]>([]);
 
@@ -70,7 +72,9 @@ const GameOver = ({
 									key={index}
 								>
 									<span className="Number">{index + 1}.</span>
-									<span>{best}</span>
+									<span>
+										{firstName}: {best}
+									</span>
 								</p>
 							))}
 					</ul>
