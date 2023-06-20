@@ -4,7 +4,7 @@ import "../styles/GameOver.css";
 import { characters } from "../components/Characters";
 import { Character } from "./Characters";
 import { firestoreDB } from "../main";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDoc } from "firebase/firestore";
 import { User as FirebaseUser } from "firebase/auth";
 
 type GameOverProps = {
@@ -37,21 +37,30 @@ const GameOver = ({
 		gameOverHasBeenSet.current = false;
 	};
 
-	//when game is over store/retrieve scores
+	const saveData = async () => {
+		try {
+			const docRef = await addDoc(collection(firestoreDB, "scores"), {
+				userID: user?.uid,
+				firstName: user?.displayName,
+				emailAddress: user?.email,
+				timeScored: formatTime(time),
+			});
+			console.log("Document written with ID: ", docRef.id);
+		} catch {
+			console.log("Error adding document: ");
+		}
+	};
+
+	//when game is over store best scores
 	useEffect(() => {
 		if (gameOverHasBeenSet.current) return;
 		if (isGameOver) {
-			console.table(user);
+			saveData();
 			gameOverHasBeenSet.current = true;
 		}
 	}, [isGameOver]);
 
-	useEffect(() => {
-		const storedTimes = localStorage.getItem("bestTimes");
-		if (storedTimes) {
-			setBestTimes(JSON.parse(storedTimes));
-		}
-	}, []);
+
 	return (
 		<div className="GameOverModal">
 			<div className="ModalContent">

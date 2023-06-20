@@ -5,11 +5,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-	<React.StrictMode>
-		<App />
-	</React.StrictMode>
-);
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(<App />);
 
 const firebaseConfig = {
 	apiKey: "AIzaSyAWTaoEWrxjmTD68HOE31ez9bCeeHqGY7Q",
