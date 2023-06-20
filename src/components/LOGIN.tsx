@@ -1,19 +1,20 @@
 import { auth, provider, signInWithPopup } from "../main";
+import { User as FirebaseUser } from "firebase/auth";
 
 type LOGINProps = {
 	isLoggedIn: boolean;
 	setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-	firstName: string | null;
-	setFirstName: React.Dispatch<React.SetStateAction<string | null>>;
+	user: FirebaseUser | null;
+	setUser: React.Dispatch<React.SetStateAction<FirebaseUser | null>>;
 };
 
-const LOGIN = ({ isLoggedIn, setIsLoggedIn, firstName, setFirstName }: LOGINProps) => {
+const LOGIN = ({ isLoggedIn, setIsLoggedIn, user, setUser }: LOGINProps) => {
 	const handleLogin = () => {
 		if (!isLoggedIn) {
 			signInWithPopup(auth, provider).then((result) => {
 				if (result) {
-					const user = result.user;
-					setFirstName(user.displayName ? user.displayName.split(" ")[0] : "");
+					const receivedUserData = result.user;
+					setUser(receivedUserData);
 					setIsLoggedIn(true);
 				}
 			});
@@ -24,7 +25,7 @@ const LOGIN = ({ isLoggedIn, setIsLoggedIn, firstName, setFirstName }: LOGINProp
 
 	return (
 		<div className="LOGINContainer">
-			<p className="UserGreeting">Hello, {isLoggedIn ? firstName : "Guest"}</p>
+			<p className="UserGreeting">Hello, {isLoggedIn ? user?.displayName : "Guest"}</p>
 			<button
 				className="LOGINButton"
 				onClick={handleLogin}

@@ -1,16 +1,17 @@
 import "../styles/Header.css";
 import Timer from "./Timer";
 import { Character } from "./Characters";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import LOGIN from "./LOGIN";
+import { User as FirebaseUser } from "firebase/auth";
 
 type HeaderProps = {
 	time: number;
 	setTime: React.Dispatch<React.SetStateAction<number>>;
 	characterArray: Character[];
 	setCharacterArray: React.Dispatch<React.SetStateAction<Character[]>>;
-	firstName: string | null;
-	setFirstName: React.Dispatch<React.SetStateAction<string | null>>;
+	user: FirebaseUser | null;
+	setUser: React.Dispatch<React.SetStateAction<FirebaseUser | null>>;
 	isLoggedIn: boolean;
 	setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -24,8 +25,8 @@ const Header = ({
 	time,
 	setTime,
 	characterArray,
-	firstName,
-	setFirstName,
+	user,
+	setUser,
 	isLoggedIn,
 	setIsLoggedIn,
 }: HeaderProps) => {
@@ -53,8 +54,8 @@ const Header = ({
 			<LOGIN
 				isLoggedIn={isLoggedIn}
 				setIsLoggedIn={setIsLoggedIn}
-				firstName={firstName}
-				setFirstName={setFirstName}
+				user={user}
+				setUser={setUser}
 			/>
 		</div>
 	);

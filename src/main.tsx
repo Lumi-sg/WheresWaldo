@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { getDatabase } from "firebase/database";
+import { getFirestore } from "firebase/firestore";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 	<React.StrictMode>
@@ -30,4 +30,5 @@ const auth = getAuth(myFirebaseApp);
 
 const provider = new GoogleAuthProvider();
 export { auth, provider, signInWithPopup };
-export const database = getDatabase();
+
+export const firestoreDB = getFirestore(myFirebaseApp);

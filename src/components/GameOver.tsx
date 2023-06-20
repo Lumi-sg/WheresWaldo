@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { formatTime } from "./FormatTime";
 import "../styles/GameOver.css";
 import { characters } from "../components/Characters";
 import { Character } from "./Characters";
+import { firestoreDB } from "../main";
+import { collection, addDoc } from "firebase/firestore";
+import { User as FirebaseUser } from "firebase/auth";
 
 type GameOverProps = {
 	time: number;
@@ -11,7 +14,7 @@ type GameOverProps = {
 	setIsGameOver: React.Dispatch<React.SetStateAction<boolean>>;
 	setAllCharactersFound: React.Dispatch<React.SetStateAction<boolean>>;
 	setCharacterArray: React.Dispatch<React.SetStateAction<Character[]>>;
-	firstName: string | null;
+	user: FirebaseUser | null;
 };
 
 const GameOver = ({
@@ -21,32 +24,27 @@ const GameOver = ({
 	setIsGameOver,
 	setAllCharactersFound,
 	setCharacterArray,
-	firstName,
+	user,
 }: GameOverProps) => {
 	const [bestTimes, setBestTimes] = useState<string[]>([]);
+	const gameOverHasBeenSet = useRef(false);
 
 	const handlePlayAgain = () => {
 		setCharacterArray(characters);
 		setTime(0);
 		setAllCharactersFound(false);
 		setIsGameOver(false);
+		gameOverHasBeenSet.current = false;
 	};
 
+	//when game is over store/retrieve scores
 	useEffect(() => {
+		if (gameOverHasBeenSet.current) return;
 		if (isGameOver) {
-			const formattedTime = formatTime(time);
-			const storedTimes = localStorage.getItem("bestTimes");
-			if (storedTimes) {
-				const times = JSON.parse(storedTimes);
-				times.push(formattedTime);
-				localStorage.setItem("bestTimes", JSON.stringify(times));
-				setBestTimes(times);
-			} else {
-				localStorage.setItem("bestTimes", JSON.stringify([formattedTime]));
-				setBestTimes([formattedTime]);
-			}
+			console.table(user);
+			gameOverHasBeenSet.current = true;
 		}
-	}, [isGameOver, time]);
+	}, [isGameOver]);
 
 	useEffect(() => {
 		const storedTimes = localStorage.getItem("bestTimes");
@@ -73,7 +71,7 @@ const GameOver = ({
 								>
 									<span className="Number">{index + 1}.</span>
 									<span>
-										{firstName}: {best}
+										{user?.displayName}: {best}
 									</span>
 								</p>
 							))}
