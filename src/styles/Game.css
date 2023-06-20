@@ -60,3 +60,14 @@
 map:hover {
 	cursor: crosshair;
 }
+
+.Game.Correct {
+	background-color: rgb(0, 84, 0);
+}
+.Game.Wrong {
+	background-color: rgba(110, 0, 0, 0.726);
+}
+
+.Game {
+	transition: ease-in-out 0.5s;
+}

@@ -17,6 +17,7 @@ const Game = ({ characterArray, setCharacterArray }: GameProps) => {
 	const [boxPosition, setBoxPosition] = useState<BoxPosition>({ x: 0, y: 0 });
 	const [showBox, setShowBox] = useState(false);
 	const [clickedDiv, setClickedDiv] = useState<string | null>("");
+	const gameContainer = document.querySelector(".Game");
 
 	const handleBoxClick = (e: any) => {
 		const boxElement = document.querySelector(".CharacterBox") as HTMLElement;
@@ -41,15 +42,27 @@ const Game = ({ characterArray, setCharacterArray }: GameProps) => {
 		if (clickedDiv) {
 			if (clickedDiv === selectedCharacter.alt) {
 				console.log("Matched!");
+				gameContainer?.classList.add("Correct");
+				setTimeout(() => {
+					gameContainer?.classList.remove("Correct");
+				}, 500);
 				const updatedCharacterArray = characterArray.map((character) => {
 					if (clickedDiv === character.alt) {
-						return { ...character, hasBeenFound: true, className: "ImageFound" };
+						return {
+							...character,
+							hasBeenFound: true,
+							className: "ImageFound",
+						};
 					}
 					return character;
 				});
 				setCharacterArray(updatedCharacterArray);
 				setShowBox(false);
 			} else {
+				gameContainer?.classList.add("Wrong");
+				setTimeout(() => {
+					gameContainer?.classList.remove("Wrong");
+				}, 500);
 				console.log("No match was made!");
 				setShowBox(false);
 			}

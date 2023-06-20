@@ -1,6 +1,4 @@
-import React from "react";
 import "../styles/WelcomeScreen.css";
-import boxArt from "../assets/BoxArt.png";
 
 const WelcomeScreen = () => {
 	return (
