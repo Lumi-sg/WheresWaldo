@@ -4,7 +4,7 @@ import "../styles/GameOver.css";
 import { characters } from "../components/Characters";
 import { Character } from "./Characters";
 import { firestoreDB } from "../main";
-import { collection, addDoc, getDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 import { User as FirebaseUser } from "firebase/auth";
 
 type GameOverProps = {
