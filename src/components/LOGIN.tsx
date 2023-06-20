@@ -1,5 +1,4 @@
-import { auth, provider } from "../main";
-import { signInWithPopup } from "firebase/auth";
+import { auth, provider, signInWithPopup } from "../main";
 
 type LOGINProps = {
 	isLoggedIn: boolean;
@@ -10,13 +9,17 @@ type LOGINProps = {
 
 const LOGIN = ({ isLoggedIn, setIsLoggedIn, firstName, setFirstName }: LOGINProps) => {
 	const handleLogin = () => {
-		signInWithPopup(auth, provider).then((result) => {
-			if (result) {
-				const user = result.user;
-				setFirstName(user.displayName ? user.displayName.split(" ")[0] : "");
-				setIsLoggedIn(true);
-			}
-		});
+		if (!isLoggedIn) {
+			signInWithPopup(auth, provider).then((result) => {
+				if (result) {
+					const user = result.user;
+					setFirstName(user.displayName ? user.displayName.split(" ")[0] : "");
+					setIsLoggedIn(true);
+				}
+			});
+		} else {
+			setIsLoggedIn(false);
+		}
 	};
 
 	return (
