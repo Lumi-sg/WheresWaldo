@@ -133,7 +133,7 @@ const GameOver = ({
 										</p>
 									))}
 							</ul>
-							<ul className="TimeList">
+							<ul className="TimeList2">
 								{newData
 									.sort() // sort the times in ascending order
 									.slice(5, 10) // display only the top 5 scores

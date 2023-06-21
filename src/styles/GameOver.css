@@ -47,14 +47,16 @@
 	margin-bottom: 2rem;
 }
 
-.TimeList {
+.TimeList,
+.TimeList2 {
 	list-style-type: disc;
 	margin-top: 1rem;
 }
 
 .TimeListContainer {
 	display: flex;
-	gap: 5rem;
+	justify-content: center;
+
 	margin-top: 2rem;
 }
 
@@ -114,10 +116,20 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border-bottom: 1px solid rgba(255, 255, 255, 0.281);
 }
 
 .NameAndTime {
 	display: flex;
 	align-items: center;
+}
+
+.TimeList {
+	border-right: 2px solid rgba(255, 255, 255, 0.281);
+}
+.TimeList .NameAndTime {
+	margin-right: 0.5rem;
+}
+
+.TimeList2 {
+	margin-left: 0.25rem;
 }
