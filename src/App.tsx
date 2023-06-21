@@ -20,7 +20,6 @@ function App() {
 
 	useEffect(() => {
 		if (isLoggedIn) {
-			setTime(0);
 			const timer = setInterval(() => {
 				setTime((prevtime) => prevtime + 1);
 			}, 1000);
@@ -31,6 +30,7 @@ function App() {
 
 			return () => clearInterval(timer);
 		}
+		setTime(0);
 	}, [allCharactersFound, isGameOver, isLoggedIn]);
 
 	useEffect(() => {
@@ -51,6 +51,7 @@ function App() {
 				setUser={setUser}
 				isLoggedIn={isLoggedIn}
 				setIsLoggedIn={setIsLoggedIn}
+				setAllCharactersFound={setAllCharactersFound}
 			/>
 			{isLoggedIn ? (
 				<Game

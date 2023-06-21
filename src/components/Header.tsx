@@ -14,6 +14,7 @@ type HeaderProps = {
 	setUser: React.Dispatch<React.SetStateAction<FirebaseUser | null>>;
 	isLoggedIn: boolean;
 	setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+	setAllCharactersFound: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type TimerProps = {
@@ -29,6 +30,8 @@ const Header = ({
 	setUser,
 	isLoggedIn,
 	setIsLoggedIn,
+	setCharacterArray,
+	setAllCharactersFound,
 }: HeaderProps) => {
 	// useEffect(() => {}, [characterArray]);
 
@@ -56,6 +59,8 @@ const Header = ({
 				setIsLoggedIn={setIsLoggedIn}
 				user={user}
 				setUser={setUser}
+				setCharacterArray={setCharacterArray}
+				setAllCharactersFound={setAllCharactersFound}
 			/>
 		</div>
 	);

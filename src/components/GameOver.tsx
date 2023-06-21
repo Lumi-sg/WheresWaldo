@@ -48,6 +48,7 @@ const GameOver = ({
 				firstName: firstName,
 				emailAddress: user?.email,
 				timeScored: formatTime(time),
+				profilePicture: user?.photoURL,
 			});
 			console.log("Document written with ID: ", docRef.id);
 			return docRef.id;
@@ -58,11 +59,21 @@ const GameOver = ({
 
 	const retrieveData = async () => {
 		await getDocs(collection(firestoreDB, "scores")).then((querySnapshot) => {
-			const newData: { id: string; timeScored: string; firstName: string }[] = [];
+			const newData: {
+				id: string;
+				timeScored: string;
+				firstName: string;
+				profilePicture: string;
+			}[] = [];
 			querySnapshot.forEach((doc) => {
 				const data = doc.data();
 				const { timeScored, firstName } = data;
-				newData.push({ id: doc.id, timeScored, firstName });
+				newData.push({
+					id: doc.id,
+					timeScored,
+					firstName,
+					profilePicture: data.profilePicture,
+				});
 			});
 			newData.sort((a, b) => a.timeScored.localeCompare(b.timeScored)); // Sort newData by timeScored in ascending order
 			setNewData(newData);
@@ -110,6 +121,12 @@ const GameOver = ({
 										>
 											<span className="Number">{index + 1}.</span>
 											<span className="NameAndTime">
+												<img
+													className="ProfilePicture"
+													src={`${item.profilePicture}`}
+													alt="User Photo"
+												/>
+
 												<span className="FirstName">{item.firstName}:</span>
 												{item.timeScored}
 											</span>
@@ -127,6 +144,11 @@ const GameOver = ({
 										>
 											<span className="Number">{index + 6}.</span>
 											<span className="NameAndTime">
+												<img
+													className="ProfilePicture"
+													src={`${item.profilePicture}`}
+													alt="User Photo"
+												/>
 												<span className="FirstName">{item.firstName}:</span>
 												{item.timeScored}
 											</span>

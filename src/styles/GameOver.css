@@ -20,7 +20,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 30rem;
+	width: auto;
 }
 
 .ModalContent > h1 {
@@ -78,6 +78,7 @@
 
 .FirstName {
 	margin-right: 0.5rem;
+	align-self: center;
 }
 .loadingDiv {
 	background-color: #000000;
@@ -98,4 +99,25 @@
 	display: inline-block;
 	width: 30px; /* Adjust the width as needed */
 	text-align: right;
+	align-self: center;
+}
+
+.ProfilePicture {
+	border-radius: 50%;
+	width: 3rem;
+	height: 3rem;
+	margin-right: 1rem;
+	padding: 0.35rem;
+}
+
+.Time {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.281);
+}
+
+.NameAndTime {
+	display: flex;
+	align-items: center;
 }
