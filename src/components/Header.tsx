@@ -1,7 +1,7 @@
 import "../styles/Header.css";
 import Timer from "./Timer";
 import { Character } from "./Characters";
-import React, { useEffect } from "react";
+import React from "react";
 import LOGIN from "./LOGIN";
 import { User as FirebaseUser } from "firebase/auth";
 
