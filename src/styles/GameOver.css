@@ -20,7 +20,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 15rem;
+	width: 30rem;
 }
 
 .ModalContent > h1 {
@@ -29,7 +29,7 @@
 }
 
 .PlayAgainButton {
-	margin-top: 3rem;
+	margin-top: 2rem;
 	background-color: #333;
 	color: white;
 	border: none;
@@ -50,6 +50,12 @@
 .TimeList {
 	list-style-type: disc;
 	margin-top: 1rem;
+}
+
+.TimeListContainer {
+	display: flex;
+	gap: 5rem;
+	margin-top: 2rem;
 }
 
 .BestTime {
@@ -87,4 +93,9 @@
 
 .FoxShine {
 	margin-bottom: 1rem;
+}
+.Number {
+	display: inline-block;
+	width: 30px; /* Adjust the width as needed */
+	text-align: right;
 }

@@ -98,23 +98,42 @@ const GameOver = ({
 					<span className="TimeDisplay">Your Time: {formatTime(time)}</span>
 					<div className="Leaderboard">
 						<span className="BestTime">Best Times</span>
-						<ul className="TimeList">
-							{newData
-								.sort() // sort the times in ascending order
-								.slice(0, 5) // display only the top 5 scores
-								.map((item, index) => (
-									<p
-										className="Time"
-										key={index}
-									>
-										<span className="Number">{index + 1}.</span>
-										<span className="NameAndTime">
-											<span className="FirstName">{item.firstName}:</span>
-											{item.timeScored}
-										</span>
-									</p>
-								))}
-						</ul>
+						<div className="TimeListContainer">
+							<ul className="TimeList">
+								{newData
+									.sort() // sort the times in ascending order
+									.slice(0, 5) // display only the top 5 scores
+									.map((item, index) => (
+										<p
+											className="Time"
+											key={index}
+										>
+											<span className="Number">{index + 1}.</span>
+											<span className="NameAndTime">
+												<span className="FirstName">{item.firstName}:</span>
+												{item.timeScored}
+											</span>
+										</p>
+									))}
+							</ul>
+							<ul className="TimeList">
+								{newData
+									.sort() // sort the times in ascending order
+									.slice(5, 10) // display only the top 5 scores
+									.map((item, index) => (
+										<p
+											className="Time"
+											key={index}
+										>
+											<span className="Number">{index + 6}.</span>
+											<span className="NameAndTime">
+												<span className="FirstName">{item.firstName}:</span>
+												{item.timeScored}
+											</span>
+										</p>
+									))}
+							</ul>
+						</div>
 					</div>
 					<div className="buttonDiv">
 						<button

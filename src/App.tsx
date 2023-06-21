@@ -20,6 +20,7 @@ function App() {
 
 	useEffect(() => {
 		if (isLoggedIn) {
+			setTime(0);
 			const timer = setInterval(() => {
 				setTime((prevtime) => prevtime + 1);
 			}, 1000);
